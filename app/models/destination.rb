@@ -4,5 +4,15 @@ class Destination < ApplicationRecord
   has_many :trips
   has_many :users, through: :trips
   has_many :places
-  accepts_nested_attributes_for :places
+
+  def self.search(search)
+      if @destination = Destination.find_by(country: search)
+        where("country LIKE ?", @destination.country)
+      elsif @destination = Destination.find_by(city: search)
+        where("city LIKE ?", @destination.city)
+      else
+    end
+  end
+
+
 end

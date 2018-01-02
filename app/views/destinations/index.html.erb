@@ -1,0 +1,18 @@
+<h1>All Destinations</h1>
+
+<%= form_tag(destinations_path, method: 'get', id: 'search-form') do %>
+<%= text_field_tag :search, params[:search], placeholder: "Search Destinations" %>
+<%= submit_tag "Search" %>
+<% end %>
+
+<% if @destinations.present? %>
+<ul>
+<% @destinations.each do |destination| %>
+<li><%=link_to destination.city, destination%> | <%= destination.country%> | <%=destination.tagline%> </li>
+<%end%>
+
+</ul>
+
+<% else %>
+  <p>There are no categories or destinations containing the term(s) <%= params[:search] %>.</p>
+<% end %>

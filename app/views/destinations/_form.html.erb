@@ -1,0 +1,20 @@
+<%= form_for @destination do |f| %>
+
+<%=f.label "City"%>
+<%=f.text_field :city%> <br>
+
+<%=f.label "Country"%>
+<%=f.text_field :country%> <br>
+
+<%=f.label "Tag Line"%>
+<%=f.text_field :tagline%> <br>
+
+<%=f.label "Summary"%>
+<%=f.text_area :summary%> <br>
+
+<%=f.label "Vacation Types"%>
+<%=f.collection_check_boxes :category_ids, @categories, :id, :name%> <br>
+
+<%=f.submit %>
+
+<%end%>

@@ -1,0 +1,36 @@
+<div class="error_message">
+   <ul>
+  <%if flash[:error]%>
+  <% flash[:error].each do |error|%>
+   <li><%=error%></li>
+   <%end%>
+   </ul>
+  <%end%>
+
+</div>
+
+
+<%=form_for @place do |f| %>
+
+<%= f.label "Destination" %>
+<%= f.collection_select :destination_id, Destination.all, :id, :city, :prompt => true %> <br>
+
+<%= f.radio_button(:place_type, "restaurant") %>
+<%= f.label(:place_type, "Restaurant") %>
+<%= f.radio_button(:place_type, "hotel") %>
+<%= f.label(:place_type, "Hotel") %>
+<%= f.radio_button(:place_type, "attraction") %>
+<%= f.label(:place_type, "Attraction") %>  <br>
+
+<%=f.label "Name"%>
+<%=f.text_field :name%> <br>
+
+<%=f.label "Neighborhood"%>
+<%=f.text_field :sublocation%> <br>
+
+<%=f.label "Summary"%>
+<%=f.text_area :summary%> <br>
+
+<%=f.submit%>
+
+<%end%>

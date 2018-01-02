@@ -1,0 +1,30 @@
+<%= form_for @trip do |f| %>
+
+<%= f.label "Trip Name" %>
+<%= f.text_field :title %> <br>
+
+<%= f.label "Destination" %>
+<%= f.collection_select :destination_id, @destinations, :id, :city, :prompt => true  %> <br>
+
+<%= f.label "User" %>
+<%= f.collection_select :user_id, @users, :id, :username, :prompt => true  %> <br>
+
+<%= f.label "Comment" %>
+<%= f.text_field :comment %> <br>
+
+<%= f.label "Rating" %>
+<%= f.number_field :rating %> <br>
+
+<%= f.radio_button(:taken, true) %>
+<%= f.label(:taken, "Already Taken") %>
+<%= f.radio_button(:taken, false) %>
+<%= f.label(:taken, "Planned") %> <br>
+
+<%= f.label "Trip Start" %>
+<%= f.date_field :start_date %> <br>
+
+<%= f.label "Trip End" %>
+<%= f.date_field :end_date %> <br>
+
+<%= f.submit %>
+<%end%>

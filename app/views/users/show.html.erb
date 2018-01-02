@@ -1,0 +1,41 @@
+<h1><%=@user.username%></h1>
+
+<h3><%=@user.fullname%></h3>
+<h3><%=@user.email%></h3>
+
+<h4>Friends</h4>
+
+<ul>
+  <%@user.friends.each do |friend|%>
+  <li><%=link_to friend.username, user_path(friend)%> (<%= link_to "remove", friendships_path, :method => :delete %>)</li>
+  <%end%>
+</ul>
+
+ <%= link_to "Add Friend", friendships_path(:friend_id => @user), :method => :post %>
+
+ <h4>Trips Taken</h4>
+<ul>
+<%@user.trips.each do |trip| %>
+ <% if trip.taken %>
+ <li><%=trip.title%> | <%=link_to trip.destination.city, destination_path(trip.destination)%></li>
+ <%end%>
+<%end%>
+</ul>
+
+<h4>Trips Planned</h4>
+<ul>
+<%@user.trips.each do |trip| %>
+<% if !trip.taken %>
+<li><%=trip.title%> | <%=link_to trip.destination.city, destination_path(trip.destination)%></li>
+<%end%>
+<%end%>
+</ul>
+
+<h4><%=link_to "Add New Trip", new_trip_path%></h4>
+
+<h4>Reviews</h4>
+<ul>
+  <%@user.reviews.each do |review| %>
+  <li><%=link_to review.place.name, place_path(review.place)%> |<%=link_to review.place.destination.city, destination_path(review.place.destination)%></li>
+  <%end%>
+</ul>

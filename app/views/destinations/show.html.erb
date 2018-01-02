@@ -1,0 +1,29 @@
+<h1><%=@destination.city%></h1>
+<h2><%=@destination.country%></h2>
+<h3><%=@destination.tagline%></h3>
+<p><%=@destination.summary%></p>
+
+<h4>Category</h4>
+<ul>
+  <%@destination.categories.each do |cat| %>
+  <li><%=cat.name%> </li>
+  <%end%>
+</ul>
+
+<h4>Comments</h4>
+<ul>
+  <%@destination.trips.each do |trip| %>
+  <li><%=trip.comment%> | <%=link_to trip.user.username, user_path(trip.user)%> </li>
+  <%end%>
+</ul>
+
+
+<h4>Places</h4>
+<ul>
+
+  <%@destination.places.each do |place| %>
+  <li><%=link_to place.name, place%></li>
+  <%end%>
+</ul>
+
+<h4><%=link_to "Add New Place", new_place_path%></h4>

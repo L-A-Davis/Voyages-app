@@ -1,0 +1,30 @@
+<h1><%=@place.name%></h1>
+<h2><%=@place.destination.city%></h2>
+<h3><%=@place.sublocation%></h3>
+
+<p><%=@place.summary%></p>
+
+<h4>Reviews</h4>
+  <%@place.reviews.each do |review|%>
+  <div class="review">
+    <h6><%=review.title%></h6>
+    <p><%=review.rating%></p>
+    <p><%=review.content%>t</p>
+    <p><%=link_to review.user.username, user_path(review.user)%> | <%=link_to "Edit"  , edit_review_path(review)%></p> <br>
+    <!-- this does not work -->
+  </div>
+   <%end%>
+
+<h4>Add New Review</h4>
+<%= form_for @review, url: reviews_path do |f| %>
+<%= f.hidden_field :place_id, value: @place.id %>
+<%= f.label "Title"%>
+<%= f.text_field :title %> <br>
+<%= f.label "Rating"%>
+<%= f.number_field :rating %> <br>
+<%= f.label "Content"%>
+<%= f.text_area :content %> <br>
+<%= f.label "User" %>
+<%= f.collection_select :user_id, @users, :id, :username, :prompt => true %> <br>
+<%= f.submit %>
+<%end%>
