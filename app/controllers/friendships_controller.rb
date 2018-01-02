@@ -1,5 +1,7 @@
 class FriendshipsController < ApplicationController
 
+
+
   def create
     @friendship = @user.friendships.build(:friend_id => params[:friend_id])
     if @friendship.save
@@ -15,7 +17,7 @@ class FriendshipsController < ApplicationController
     @friendship = @user.friendships.find(params[:id])
     @friendship.destroy
     flash[:notice] = "Removed friendship."
-    redirect_to current_user
+    redirect_to user_path
   end
 
 

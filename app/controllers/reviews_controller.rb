@@ -24,6 +24,14 @@ class ReviewsController < ApplicationController
   end
 end
 
+def destroy
+  @review = Review.find(params[:id])
+  @place = @review.place
+  @review.destroy
+  redirect_to place_path(@place)
+end
+
+
 
 private
 

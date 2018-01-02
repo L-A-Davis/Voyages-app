@@ -2,8 +2,11 @@ class DestinationsController < ApplicationController
 
   def index
     @destinations = Destination.all
+    @categories = Category.all
     if params[:search]
       @destinations = Destination.search(params[:search])
+    elsif params[:categories]
+      @category = Category.search(params[:categories])
     else
       @destinations = Destination.all
     end

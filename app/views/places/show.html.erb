@@ -4,27 +4,36 @@
 
 <p><%=@place.summary%></p>
 
+<div id="review_container">
 <h4>Reviews</h4>
+<div class="row">
   <%@place.reviews.each do |review|%>
   <div class="review">
-    <h6><%=review.title%></h6>
-    <p><%=review.rating%></p>
+    <h4><%=review.title%></h4>
+    <p>Rating: <%=review.rating%></p>
     <p><%=review.content%>t</p>
-    <p><%=link_to review.user.username, user_path(review.user)%> | <%=link_to "Edit"  , edit_review_path(review)%></p> <br>
+    <p><%=link_to review.user.username, user_path(review.user)%> |
+      <%=link_to "Delete", review_path(review), method: :delete %>
+    </p> <br>
     <!-- this does not work -->
   </div>
    <%end%>
+</div>
+</div>
 
-<h4>Add New Review</h4>
-<%= form_for @review, url: reviews_path do |f| %>
-<%= f.hidden_field :place_id, value: @place.id %>
-<%= f.label "Title"%>
-<%= f.text_field :title %> <br>
-<%= f.label "Rating"%>
-<%= f.number_field :rating %> <br>
-<%= f.label "Content"%>
-<%= f.text_area :content %> <br>
-<%= f.label "User" %>
-<%= f.collection_select :user_id, @users, :id, :username, :prompt => true %> <br>
-<%= f.submit %>
-<%end%>
+<span> </span>
+<div class="add_review">
+  <h4>Add New Review</h4>
+  <%= form_for @review, url: reviews_path do |f| %>
+  <%= f.hidden_field :place_id, value: @place.id %>
+  <%= f.label "Title"%>
+  <%= f.text_field :title %> <br>
+  <%= f.label "Rating"%>
+  <%= f.number_field :rating %> <br>
+  <%= f.label "Content"%>
+  <%= f.text_area :content %> <br>
+  <%= f.label "User" %>
+  <%= f.collection_select :user_id, @users, :id, :username, :prompt => true %> <br>
+  <%= f.submit %>
+  <%end%>
+</div>

@@ -1,7 +1,10 @@
 <h1>All Destinations</h1>
 
 <%= form_tag(destinations_path, method: 'get', id: 'search-form') do %>
-<%= text_field_tag :search, params[:search], placeholder: "Search Destinations" %>
+<%= text_field_tag :search, params[:search], placeholder: "Search Destinations by Country or City" %> <br>
+<%= select_tag "categories", options_from_collection_for_select(@categories, :id, :name), prompt: "Or select a Category"%>
+
+
 <%= submit_tag "Search" %>
 <% end %>
 
